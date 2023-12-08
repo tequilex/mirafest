@@ -1,0 +1,27 @@
+@import '../../styles/vars.scss';
+
+.footer {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  border-top: 1px solid grey;
+  justify-content: space-between;
+  padding: 0 25px 0 10px;
+
+  .wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    height: 80px;
+  }
+
+  .name {
+    font-family: 'Zitter-Regular.ttf'
+  }
+
+  .policy {
+    color: rgb(156, 154, 154)
+  }
+}

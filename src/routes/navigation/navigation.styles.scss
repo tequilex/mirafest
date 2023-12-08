@@ -1,0 +1,24 @@
+@import '../../styles/vars.scss';
+
+.navigation {
+  justify-content: space-between;
+  display: flex;
+  height: 70px;
+  background: rgb(76, 76, 76);
+  padding: 25px 25px 0 25px;
+
+  .nav-links-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+
+  .nav-link {
+    color: white;
+    cursor: pointer;
+        
+    &:hover {
+      color: $title;
+    }
+  }
+}

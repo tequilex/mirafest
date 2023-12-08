@@ -1,0 +1,16 @@
+@import '../../styles/vars.scss';
+
+.button {
+  font-weight: bold;
+  padding: 10px 0;
+  background: rgb(188, 130, 5);
+  width: 100%;
+  color: $white;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: 0.5s;
+
+  &:hover {
+    background: $title;
+  }
+}

@@ -1,0 +1,51 @@
+.error-page {
+  background-image: url("../../../public/Background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  color: #424242;
+}
+
+.not-found {
+  font-size: 300px;
+
+  @media screen and (max-width: 768px) {
+      font-size: 144px;
+  }
+
+  img {
+      width: 244px;
+      height: 244px;
+      vertical-align: baseline;
+
+      @media screen and (max-width: 768px) {
+          width: 111px;
+          height: 111px;
+      }
+  }
+}
+
+.not-found-desc {
+  font-size: 18px;
+  color: rgba(22, 24, 35, 0.5);
+
+  @media screen and (max-width: 768px) {
+      font-size: 14px;
+  }
+}
+
+.back {
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+
+  @media screen and (max-width: 768px) {
+      font-size: 18px;
+  }
+}

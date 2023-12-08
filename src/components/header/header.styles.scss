@@ -1,0 +1,54 @@
+@import '../../styles/vars.scss';
+
+.header {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  background: rgb(76, 76, 76);
+  justify-content: space-between;
+  padding: 0 25px 0 10px;
+  position: fixed;
+  width: 100%;
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .logo {
+    height: 80px;
+  }
+
+  .name {
+    font-family: 'Zitter-Regular.ttf';
+    transition: 0.3s;
+
+    &:hover {
+      color: $title;
+    }
+  }
+
+  .toReg {
+    display: flex;
+    gap: 10px;
+
+    .sign-in {
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: $title;
+      }
+    }
+
+    .sign-up {
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: $title;
+      }
+    }
+  }
+}

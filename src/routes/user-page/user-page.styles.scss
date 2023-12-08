@@ -1,0 +1,27 @@
+@import '../../styles/vars.scss';
+
+.user-container {
+  margin: 30px;
+  padding: 30px;
+  background: grey;
+  border-radius: 10px;
+  border: 1px solid $title;
+
+  .selects {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+
+  .select-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .select {
+    margin-top: 3px;
+    background: rgba(59, 54, 54, 0.436);
+    border-radius: 6px;
+    padding: 5px 10px 5px 5px;
+  }
+}

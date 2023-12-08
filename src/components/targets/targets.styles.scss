@@ -1,0 +1,42 @@
+@import '../../styles/vars.scss';
+@import "../../styles/mixins.scss";
+
+.targets-section {
+  margin-bottom: 50px;
+
+  .title {
+    font-size: 25px;
+    color: $title;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .targets-section-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    @include point {
+      flex-direction: column-reverse;
+    }
+  }
+
+  .targets-info {
+    line-height: 30px;
+
+    
+    @include point {
+      text-align: center;
+    }
+  }
+
+  .targets-img {
+    border-radius: 5px;
+
+    
+    @include point {
+      min-height: 125px;
+      max-height: 375px;
+    }
+  }
+}

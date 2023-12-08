@@ -1,0 +1,3 @@
+export const USER_INFO_ACTION_TYPES = {
+    SET_USER_INFO: 'SET_USER_INFO',
+}

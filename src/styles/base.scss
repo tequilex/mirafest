@@ -1,0 +1,42 @@
+@import './mixins.scss';
+@import './vars.scss';
+
+@font-face {
+  font-family: 'Zitter-Regular.ttf';
+  src: url('../Zitter-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Fontfabric-MullerLight.otf';
+  src: url('../Fontfabric-MullerLight.otf') format("opentype");
+}
+
+body {
+  margin: 0;
+  font-family: 'Fontfabric-MullerLight.otf';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $dark;
+  color: $white;
+  font-size: 16px;
+  transition: 0.3s linear;
+}
+
+.container {
+  max-width: 1310px;
+  margin: 0 auto;
+  padding: 7rem 2.75rem 3rem 2.75rem;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;              
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;       
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: grey;   
+  border-radius: 20px;      
+}

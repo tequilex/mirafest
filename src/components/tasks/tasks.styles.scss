@@ -1,0 +1,38 @@
+@import '../../styles/vars.scss';
+@import "../../styles/mixins.scss";
+
+.tasks-section {
+  margin-bottom: 50px;
+
+  .tasks-title {
+    font-size: 25px;
+    color: $title;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .tasks-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    @include point {
+      flex-direction: column;
+    }
+  }
+
+  .tasks-img {
+    border-radius: 5px;
+    min-height: 250px;
+    max-height: 310px;
+  }
+
+  .list-tasks {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tasks {
+    margin-bottom: 5px;
+  }
+}
