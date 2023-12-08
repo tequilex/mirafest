@@ -19,7 +19,6 @@ const Navigation = () => {
     return (
         <Fragment>
             <div className="navigation">
-
                 <div className="nav-links-container">
                     {role === "admin" ? (
                         <Link className="nav-link" to="/apanel">
@@ -39,11 +38,10 @@ const Navigation = () => {
                             </Link>
                         </>
                     )}
-
-                    <span className="nav-link" onClick={signOutHandler}>
-                        Выйти
-                    </span>
                 </div>
+                <span className="nav-link" onClick={signOutHandler}>
+                        Выйти
+                </span>
             </div>
             <Outlet />
         </Fragment>

@@ -1,0 +1,33 @@
+@import '../../styles/vars.scss';
+
+.admin-panel-container {
+  padding: 20px 20px 20px 20px;
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px 0px 20px 0;
+  }
+
+  .total {
+    margin-bottom: 10px;
+  }
+
+  .users-list {
+
+  }
+
+  .user {
+    background: rgb(83, 81, 81);
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 5px;
+    border: 1px solid grey;
+    border-radius: 6px;
+
+    &:hover {
+      color: $title;
+    }
+  }
+}

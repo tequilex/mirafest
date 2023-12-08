@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { selectUserDetails } from "../../store/user-details/user-details.selector";
 import { setUserDetails } from "../../store/user-details/user-details.action";
 
+import "./admin-panel.scss";
+
 const AdminPanel = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,42 +17,58 @@ const AdminPanel = () => {
   const userDetails = useSelector(selectUserDetails);
 
   useEffect(() => {
-      const getUserDocs = async () => {
-          if (!currentUser) return;
-          try {
-              const docs = await getUserDoc(currentUser);
-              dispatch(setUserInfo(docs));
-          } catch (error) {
-              console.error(error);
-          }
-      };
+    const getUserDocs = async () => {
+      if (!currentUser) return;
+      try {
+        const docs = await getUserDoc(currentUser);
+        dispatch(setUserInfo(docs));
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-      getUserDocs();
+    getUserDocs();
   }, [currentUser]);
 
   useEffect(() => {
-      const userDocs = async () => {
-          const docs = await getUserDocs();
-          dispatch(setUserDetails(docs));
-      }
+    const userDocs = async () => {
+      const docs = await getUserDocs();
+      dispatch(setUserDetails(docs));
+    };
 
-      userDocs();
-  }, [])
+    userDocs();
+  }, []);
   const handleChange = (email) => {
-      navigate(`/apanel/${email}`)
-  }
+    navigate(`/apanel/${email}`);
+  };
+
+  const sort = () => {
+    let total = 0;
+    userDetails.forEach((user) => {
+      if (user.role === "user") ++total;
+    });
+    return total;
+  };
 
   return (
-      <div>
-          <h1>Admin panel</h1>
-          {userDetails.map((user) => (
-              user.role === "admin" ? null :
-              <div key={user.email}>
-                  <p onClick={() => handleChange(user.email)}>{user.displayName}</p>
-              </div>
-          ))}
-      </div>
-  )
-}
+    <div className="admin-panel-container">
+      <h2 className="title">Админка</h2>
+      <div className="total">Всего пользователей: {sort()}</div>
+      <ul className="users-list">
+        {userDetails.map((user) =>
+          user.role === "admin" ? null : (
+            <li
+              className="user"
+              key={user.email}
+              onClick={() => handleChange(user.email)}
+            >
+              {user.displayName}
+            </li>
+          )
+        )}
+      </ul>
+    </div>
+  );
+};
 
 export default AdminPanel;
