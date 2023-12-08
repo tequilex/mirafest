@@ -62,9 +62,9 @@ const UserPage = () => {
         event.preventDefault();
         try {
             await updateUserDoc(currentUser, formFields);
-            alert("Профиль обновлен");
+            alert("Профиль обновлен!");
         } catch (error) {
-            alert("Произошла ошибка при обновлении профиля", error);
+            alert("Произошла ошибка при обновлении профиля!", error);
         }
     };
 
