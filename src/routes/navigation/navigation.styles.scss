@@ -7,6 +7,10 @@
   background: rgb(76, 76, 76);
   padding: 25px 25px 0 25px;
 
+  .nav-wrap {
+    display: flex;
+  }
+
   .nav-links-container {
     display: flex;
     gap: 30px;
