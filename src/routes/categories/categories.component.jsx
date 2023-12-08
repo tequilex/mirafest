@@ -14,9 +14,9 @@ const handleSubmit = async (event) => {
     event.preventDefault()
     try {
         // await updateUserCategoryDoc(currentUser, checkbox)
-        alert('успешно обновлено')
+        alert('Успешно обновлено!')
     } catch (error) {
-        console.log('ошибка', error);
+        console.log('Ошибка!', error);
     }
 }
 
