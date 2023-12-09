@@ -14,7 +14,7 @@
   }
 
   .users-list {
-
+    
   }
 
   .user {
@@ -25,6 +25,14 @@
     margin-bottom: 5px;
     border: 1px solid grey;
     border-radius: 6px;
+
+    &:hover {
+      color: $title;
+    }
+  }
+
+  .del {
+    cursor: pointer;
 
     &:hover {
       color: $title;

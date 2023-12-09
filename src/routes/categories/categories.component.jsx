@@ -1,5 +1,3 @@
-// import { useContext } from "react";
-// import { UserContext } from "../../contexts/user.context";
 import Category from "../../components/category/category.component";
 import Button from "../../components/button/button.component";
 import "./categories.styles.scss";
@@ -7,7 +5,6 @@ import { useSelector } from "react-redux";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 
 const Categories = () => {
-// const { userInfo } = useContext(UserContext);
 const userInfo = useSelector(selectUserInfo)
 
 const handleSubmit = async (event) => {

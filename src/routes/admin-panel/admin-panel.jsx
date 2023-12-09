@@ -1,5 +1,5 @@
 import { Children, useEffect, useState } from "react";
-import { getUserDoc, getUserDocs } from "../../utils/firebase/firebase.utils";
+import { deleteUserFromDatabaseAndAuth, getUserDoc, getUserDocs } from "../../utils/firebase/firebase.utils";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
@@ -50,6 +50,15 @@ const AdminPanel = () => {
     return total;
   };
 
+  const deleteUser = async (uid) => {
+    try {
+      await deleteUserFromDatabaseAndAuth(uid);
+      alert("Успех");
+    } catch (error) {
+      alert("Ошибка", error);
+    }
+  };
+
   return (
     <div className="admin-panel-container">
       <h2 className="title">Админка</h2>
@@ -59,7 +68,7 @@ const AdminPanel = () => {
           user.role === "admin" ? null : (
             <li
               className="user"
-              key={user.email}
+              key={user.uid}
               onClick={() => handleChange(user.email)}
             >
               {user.displayName}

@@ -56,7 +56,8 @@ const SignUpForm = () => {
                 choisedPackage: "не выбран",
                 role: 'user',
                 nameCollective: '',
-                DATA_CATEGORIES
+                DATA_CATEGORIES,
+                uid: user.uid
             });
             setFormFields(defaultFormFields);
             navigate("/user");

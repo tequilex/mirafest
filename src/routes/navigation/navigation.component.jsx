@@ -19,6 +19,7 @@ const Navigation = () => {
     return (
         <Fragment>
             <div className="navigation">
+                <div className="nav-wrap">
                 <div className="nav-links-container">
                     {role === "admin" ? (
                         <Link className="nav-link" to="/apanel">
@@ -42,7 +43,10 @@ const Navigation = () => {
                 <span className="nav-link" onClick={signOutHandler}>
                         Выйти
                 </span>
+                </div>
+                <span className="name">Пользователь: {userInfo.displayName}</span>
             </div>
+            
             <Outlet />
         </Fragment>
     );

@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  deleteUser,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -15,6 +16,7 @@ import {
   updateDoc,
   collection,
   getDocs,
+  deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -97,6 +99,14 @@ export const getUserDocs = async () => {
   })
 
   return userDocs;
+}
+
+export const deleteUserFromDatabaseAndAuth = async (userAuth) => {
+  console.log(userAuth);
+  const userDocRef = doc(db, "users", userAuth.uid);
+  // await deleteDoc(userDocRef);
+
+  await deleteUser();
 }
 
 // export const updateUserCategoryDoc = async (userAuth, checked) => {

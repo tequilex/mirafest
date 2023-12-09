@@ -1,0 +1,32 @@
+@import '../../../styles/vars.scss';
+
+.user-details-container {
+  width: 100%;
+  padding: 20px;
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px 0px 20px 0;
+  }
+
+  .user-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .user-details-item {
+    background: rgb(83, 81, 81);
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 5px;
+    justify-content: space-between;
+  }
+
+  .item {
+    color: $title;
+  }
+}
