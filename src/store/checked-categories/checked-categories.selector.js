@@ -1,0 +1,1 @@
+export const selectCheckedCategories = (state) => state.checkedCategories.checkedCategories;

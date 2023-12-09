@@ -12,7 +12,7 @@ const Checkbox = ({ item }) => {
         <input
           name={item.name}
           type="checkbox"
-          // checked={item.isChecked}
+          // checked={true}
           onChange={handleChange}
         />
         {item.name}
