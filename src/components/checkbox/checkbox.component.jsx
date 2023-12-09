@@ -9,7 +9,7 @@ const Checkbox = ({ inf, index }) => {
         <input
           name={inf.name}
           type="checkbox"
-          checked={true}
+          // checked={true}
           onChange={handleChange}
         />
         {inf.name}
