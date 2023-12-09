@@ -6,47 +6,49 @@ import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 import { selectCategories } from "../../store/categories/categories.selector";
 import { useEffect } from "react";
 import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
-import { setCategories } from '../../store/categories/categories.action';
+import { setCategories } from "../../store/categories/categories.action";
 
 const Categories = () => {
-const userInfo = useSelector(selectUserInfo)
-const dispatch = useDispatch()
-const categories = useSelector(selectCategories)
+  const userInfo = useSelector(selectUserInfo);
+  const dispatch = useDispatch();
+  const categories = useSelector(selectCategories);
 
-useEffect(() => {
+  useEffect(() => {
     const getCategories = async () => {
-        try {
-            const categoryMap = await getCategoriesAndDocuments('categories')
-            dispatch(setCategories(categoryMap))
-        } catch (error) {
-            console.log(error)
-        }
-    }
+      try {
+        const categoryMap = await getCategoriesAndDocuments("categories");
+        dispatch(setCategories(categoryMap));
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     getCategories();
-}, [])
+  }, []);
 
+  console.log(categories);
 
-const handleSubmit = async (event) => {
-    event.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-        // await updateUserCategoryDoc(currentUser, checkbox)
-        alert('Успешно обновлено!')
+      // await updateUserCategoryDoc(currentUser, checkbox)
+      alert("Успешно обновлено!");
     } catch (error) {
-        console.log('Ошибка!', error);
+      console.log("Ошибка!", error);
     }
-}
+  };
 
-return (
+  return (
     <div className="categories-container">
-        {/* <form onSubmit={handleSubmit}>
-            {userInfo.DATA_CATEGORIES.map((items, i) => {
-                console.log(items);
-                return <Category key={i} items={items} index={i}/>;
+      <form onSubmit={handleSubmit}>
+            {Object.keys(categories).map((title) => {
+                const category = categories[title]
+                console.log(category);
+                return <Category key={title} category={category} title={title} />
             })}
             <Button type='submit'>Сохранить</Button>
-        </form> */}
+        </form>
     </div>
-);
+  );
 };
 export default Categories;
