@@ -19,13 +19,13 @@ const handleSubmit = async (event) => {
 
 return (
     <div className="categories-container">
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
             {userInfo.DATA_CATEGORIES.map((items, i) => {
                 console.log(items);
                 return <Category key={i} items={items} index={i}/>;
             })}
             <Button type='submit'>Сохранить</Button>
-        </form>
+        </form> */}
     </div>
 );
 };

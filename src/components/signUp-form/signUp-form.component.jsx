@@ -1,12 +1,7 @@
 import { useState } from "react";
-
 import "./signUp-form.styles.scss";
-
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-
-import DATA_CATEGORIES from "../../data-categories.js";
-
 import {
     createAuthUserWithEmailAndPassword,
     createUserDocumentFromAuth,
@@ -21,8 +16,6 @@ const defaultFormFields = {
     password: "",
     confirmPassword: "",
 };
-
-// console.log(DATA_CATEGORIES);
 
 const SignUpForm = () => {
     const navigate = useNavigate();
@@ -56,7 +49,6 @@ const SignUpForm = () => {
                 choisedPackage: "не выбран",
                 role: 'user',
                 nameCollective: '',
-                DATA_CATEGORIES,
                 uid: user.uid
             });
             setFormFields(defaultFormFields);

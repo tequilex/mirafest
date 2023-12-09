@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../contexts/user.context";
-import { getUserDoc, updateUserDoc } from "../../utils/firebase/firebase.utils";
+import { addCollectionAndDocuments, getUserDoc, updateUserDoc } from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
 import Button from "../../components/button/button.component";
 
@@ -11,6 +11,8 @@ import {setUserInfo} from "../../store/userInfo/user-info.action"
 import { selectUserInfo } from "../../store/userInfo/user-info.selector"
 import { Navigate } from "react-router-dom";
 
+// import DATA_CATEGORIES from '../../data-categories.js'
+
 const UserPage = () => {
     // const { userInfo, currentUser } = useContext(UserContext);
     const userInfo = useSelector(selectUserInfo);
@@ -18,6 +20,10 @@ const UserPage = () => {
     const dispatch = useDispatch();
 
     const [formFields, setFormFields] = useState(userInfo);
+
+    // useEffect(() => {
+    //     addCollectionAndDocuments('categories', DATA_CATEGORIES)
+    // }, [])
 
     useEffect(() => {
         const getUserDocs = async () => {

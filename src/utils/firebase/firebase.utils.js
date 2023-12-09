@@ -17,6 +17,7 @@ import {
   collection,
   getDocs,
   deleteDoc,
+  writeBatch,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -108,6 +109,23 @@ export const deleteUserFromDatabaseAndAuth = async (userAuth) => {
 
   await deleteUser();
 }
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log("done");
+};
+
 
 // export const updateUserCategoryDoc = async (userAuth, checked) => {
 //   const userDocRef = doc(db, "users", userAuth.uid);

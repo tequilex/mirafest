@@ -1,5 +1,6 @@
 const DATA_CATEGORIES = [
   {
+    id: 1,
     title: 'master-class',
     items: [
       {
@@ -29,6 +30,7 @@ const DATA_CATEGORIES = [
     ],
   },
   {
+    id: 2,
     title: 'nomination-orkestr',
     items: [
       {
@@ -76,6 +78,7 @@ const DATA_CATEGORIES = [
     ],
   },
   {
+    id: 3,
     title: 'nomination-CD',
     items: [
       {
