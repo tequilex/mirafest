@@ -1,18 +1,21 @@
-const Checkbox = ({ inf, index }) => {
+import { useState } from "react";
+
+const Checkbox = ({ item }) => {
+  
 
   const handleChange = (event) => {
     const { checked } = event.target;
   };
 
   return (
-      <label key={index} className="category">
+      <label className="category">
         <input
-          name={inf.name}
+          name={item.name}
           type="checkbox"
-          checked={true}
+          // checked={item.isChecked}
           onChange={handleChange}
         />
-        {inf.name}
+        {item.name}
       </label>
   );
 };

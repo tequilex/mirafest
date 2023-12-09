@@ -1,16 +1,14 @@
 import Checkbox from "../checkbox/checkbox.component";
 import "./category.styles.scss";
 
-const Category = ({ items, index }) => {
+const Category = ({ title, category }) => {
 
   return (
     <div className="category-block">
-      <h3 className="category-title">{items.title}</h3>
-      {items.items.map((item, index) => {
-        return (
-          <Checkbox key={index} inf={item} index={index} />
-        );
-      })}
+      <h3 className="category-title">{title}</h3>
+      {category.map((item) => (
+        <Checkbox key={item.id} item={item}/>
+      ))}
     </div>
   );
 };
