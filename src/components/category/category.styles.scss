@@ -1,4 +1,16 @@
+@import '../../styles/vars.scss';
+
 .category-block {
+  padding: 10px;
   display: flex;
   flex-direction: column;
+  background: rgba(59, 54, 54, 0.436);
+  margin-bottom: 10px;
+  border-radius: 10px;
+
+  .category-title {
+    color: $title;
+    font-weight: 300;
+    font-size: 20px;
+  }
 }

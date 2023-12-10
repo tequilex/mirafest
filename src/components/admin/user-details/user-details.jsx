@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { selectUserDetails } from "../../../store/user-details/user-details.selector";
 
 import "./user-details.scss";
@@ -27,8 +27,11 @@ const UserDetails = () => {
             number,
             skill,
             choisedPackage,
+            linkDisk,
+            checkedCategories,
           }) => (
             <Fragment key={uid}>
+              <Link to='/apanel' className="link">&#10094; Назад</Link>
               <h2 className="title">{displayName}</h2>
               <ul className="user-details-list">
                 <li className="user-details-item">
@@ -67,6 +70,18 @@ const UserDetails = () => {
                   <span className="item-name">Пакет:</span>
                   <span className="item">{choisedPackage}</span>
                 </li>
+                <li className="user-details-item">
+                  <span className="item-name">Ссылка на музыку:</span>
+                  <a className="item item-link" href={linkDisk}>
+                    Перейти
+                  </a>
+                </li>
+              </ul>
+              <div className="title">Участие</div>
+              <ul className="user-details-list">
+                {checkedCategories.map((item) => (
+                  <li className="user-details-item">{item.name}</li>
+                ))}
               </ul>
             </Fragment>
           )

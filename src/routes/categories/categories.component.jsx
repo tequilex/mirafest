@@ -63,7 +63,8 @@ const Categories = () => {
 
   return (
     <div className="categories-container">
-      <form onSubmit={handleSubmit}>
+      <h2 className="title">Участие</h2>
+      <form className="form-categories" onSubmit={handleSubmit}>
         {Object.keys(categories).map((title) => {
           const category = categories[title];
           return <Category key={title} category={category} title={title} />;

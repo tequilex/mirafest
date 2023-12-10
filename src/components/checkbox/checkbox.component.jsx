@@ -3,16 +3,12 @@ import { selectCheckedCategories, selectCheckedToAdd } from '../../store/checked
 import { setCheckedCategories } from '../../store/checked-categories/checked-categories.action'
 
 const Checkbox = ({ item }) => {
-  const dispatch = useDispatch()
-  const checkedCategories = useSelector(selectCheckedCategories)
+  const dispatch = useDispatch();
+  const checkedCategories = useSelector(selectCheckedCategories);
 
   const handleChange = (event) => {
     const { checked } = event.target;
-    // console.log(checked);
-
-    // dispatch(setCheckedCategories(checked ? [...checkedCategories, item] : checkedCategories.filter(el => el.name !== item.name)));
     dispatch(setCheckedCategories(checkedCategories, item, checked))
-
   };
 
   const filterChecked = checkedCategories.find(el => el.name === item.name)
@@ -21,7 +17,6 @@ const Checkbox = ({ item }) => {
       <label className="category">
         <input
           name={item.name}
-          value={item.name}
           type="checkbox"
           checked={filterChecked && filterChecked.isChecked}
           onChange={handleChange}

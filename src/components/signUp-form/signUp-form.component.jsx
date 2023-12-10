@@ -44,11 +44,13 @@ const SignUpForm = () => {
                 displayName,
                 city,
                 birthday,
-                number: "",
+                mentor: "не указан",
+                number: "не указан",
                 skill: "не выбран",
                 choisedPackage: "не выбран",
                 role: 'user',
-                nameCollective: '',
+                nameCollective: 'не указан',
+                linkDisk: 'не указана',
                 uid: user.uid,
                 checkedCategories: []
             });
