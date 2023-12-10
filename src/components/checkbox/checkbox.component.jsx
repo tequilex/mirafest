@@ -22,7 +22,7 @@ const Checkbox = ({ item }) => {
         <input
           name={item.name}
           type="checkbox"
-          // checked={true}
+          checked={headerStone && headerStone.isChecked}
           onChange={handleChange}
         />
         {item.name}
