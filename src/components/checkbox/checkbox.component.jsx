@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectCheckedCategories } from '../../store/checked-categories/checked-categories.selector'
+import { selectCheckedCategories, selectCheckedToAdd } from '../../store/checked-categories/checked-categories.selector'
 import { setCheckedCategories } from '../../store/checked-categories/checked-categories.action'
 
 const Checkbox = ({ item }) => {
@@ -8,19 +8,22 @@ const Checkbox = ({ item }) => {
 
   const handleChange = (event) => {
     const { checked } = event.target;
-    dispatch(setCheckedCategories(item));
-    console.log(checkedCategories);
-    // console.log(item);
+    // console.log(checked);
+
+    // dispatch(setCheckedCategories(checked ? [...checkedCategories, item] : checkedCategories.filter(el => el.name !== item.name)));
+    dispatch(setCheckedCategories(checkedCategories, item, checked))
+
   };
 
+  const headerStone = checkedCategories.find(el => el.name === item.name)
   
-
   return (
       <label className="category">
         <input
           name={item.name}
+          value={item.name}
           type="checkbox"
-          // checked={true}
+          checked={headerStone && headerStone.isChecked}
           onChange={handleChange}
         />
         {item.name}
