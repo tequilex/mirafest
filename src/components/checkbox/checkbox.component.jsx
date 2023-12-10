@@ -1,28 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
-import { setCheckedCategories } from "../../store/checked-categories/checked-categories.action";
+import { selectCheckedCategories, selectCheckedToAdd } from '../../store/checked-categories/checked-categories.selector'
+import { setCheckedCategories } from '../../store/checked-categories/checked-categories.action'
 
 const Checkbox = ({ item }) => {
   const dispatch = useDispatch();
   const checkedCategories = useSelector(selectCheckedCategories);
 
   const handleChange = (event) => {
-    const { checked, name } = event.target;
+    const { checked } = event.target;
+    // console.log(checked);
+
+    // dispatch(setCheckedCategories(checked ? [...checkedCategories, item] : checkedCategories.filter(el => el.name !== item.name)));
+    dispatch(setCheckedCategories(checkedCategories, item, checked))
 
   };
 
-  console.log(checkedCategories);
-
+  const headerStone = checkedCategories.find(el => el.name === item.name)
+  
   return (
-    <label className="category">
-      <input
-        name={item.name}
-        type="checkbox"
-        // checked={true}
-        onChange={handleChange}
-      />
-      {item.name}
-    </label>
+      <label className="category">
+        <input
+          name={item.name}
+          type="checkbox"
+          // checked={true}
+          onChange={handleChange}
+        />
+        {item.name}
+      </label>
   );
 };
 export default Checkbox;
