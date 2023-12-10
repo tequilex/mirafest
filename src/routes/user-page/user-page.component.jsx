@@ -12,7 +12,7 @@ import { selectUserInfo } from "../../store/userInfo/user-info.selector"
 import { Navigate } from "react-router-dom";
 import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
 
-// import DATA_CATEGORIES from '../../data-categories.js'
+import DATA_CATEGORIES from '../../data-categories.js'
 
 const UserPage = () => {
     // const { userInfo, currentUser } = useContext(UserContext);
@@ -24,6 +24,10 @@ const UserPage = () => {
     console.log(checkedCategories);
 
     const [formFields, setFormFields] = useState(userInfo);
+
+    // useEffect(() => {
+    //     addCollectionAndDocuments('categories', DATA_CATEGORIES)
+    // }, [])
 
     useEffect(() => {
         const getUserDocs = async () => {
@@ -76,7 +80,8 @@ const UserPage = () => {
 
     return (
         <div className="user-container">
-            <form onSubmit={handleSubmit}>
+            <h2 className="title">Анкета</h2>
+            <form className="form-user" onSubmit={handleSubmit}>
                 <FormInput
                     label="ФИО"
                     required

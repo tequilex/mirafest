@@ -8,6 +8,7 @@ import {
 import MainPage from "./routes/main-page/main-page.component";
 import Auth from "./routes/auth/auth.component";
 import UserPage from "./routes/user-page/user-page.component";
+import MusicPage from './routes/music-page/music-page.component'
 import Categories from "./routes/categories/categories.component";
 import Billing from "./routes/billing/billing.component";
 import Navigation from "./routes/navigation/navigation.component";
@@ -47,6 +48,14 @@ const App = () => {
                     element: (
                         <ProtectedRoute>
                             <UserPage />
+                        </ProtectedRoute>
+                    ),
+                },
+                {
+                    path: "/music",
+                    element: (
+                        <ProtectedRoute>
+                            <MusicPage />
                         </ProtectedRoute>
                     ),
                 },

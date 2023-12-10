@@ -30,6 +30,9 @@ const Navigation = () => {
                         <Link className="nav-link" to="/user">
                             Анкета
                         </Link>
+                        <Link className="nav-link" to="/music">
+                            Музыка
+                        </Link>
                             <Link className="nav-link" to="/categories">
                                 Участие
                             </Link>

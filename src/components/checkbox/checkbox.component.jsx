@@ -8,21 +8,17 @@ const Checkbox = ({ item }) => {
 
   const handleChange = (event) => {
     const { checked } = event.target;
-    // console.log(checked);
-
-    // dispatch(setCheckedCategories(checked ? [...checkedCategories, item] : checkedCategories.filter(el => el.name !== item.name)));
     dispatch(setCheckedCategories(checkedCategories, item, checked))
-
   };
 
-  const headerStone = checkedCategories.find(el => el.name === item.name)
+  const filterChecked = checkedCategories.find(el => el.name === item.name)
   
   return (
       <label className="category">
         <input
           name={item.name}
           type="checkbox"
-          checked={headerStone && headerStone.isChecked}
+          checked={filterChecked && filterChecked.isChecked}
           onChange={handleChange}
         />
         {item.name}
