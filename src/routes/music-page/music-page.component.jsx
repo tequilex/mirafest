@@ -36,6 +36,7 @@ const MusicPage = () => {
       <form className="music-form" onSubmit={handleSubmit}>
         <FormInput 
           label='Укажите ссылку на ЯндексДиск'
+          required
           type="text"
           name="linkDisk"
           value={link || ""}

@@ -13,8 +13,6 @@ import { Navigate } from "react-router-dom";
 import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
 // import DATA_CATEGORIES from "../../data-categories";
 
-// import DATA_CATEGORIES from '../../data-categories.js'
-
 const UserPage = () => {
     // const { userInfo, currentUser } = useContext(UserContext);
     const userInfo = useSelector(selectUserInfo);

@@ -12,8 +12,9 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import { setCategories } from "../../store/categories/categories.action";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
+import { selectCheckedCategories, selectCheckedTotal } from "../../store/checked-categories/checked-categories.selector";
 import { setCheckedCategories, setCheckedCategoriesMap } from "../../store/checked-categories/checked-categories.action";
+
 
 const Categories = () => {
   const userInfo = useSelector(selectUserInfo);
@@ -21,6 +22,7 @@ const Categories = () => {
   const currentUser = useSelector(selectCurrentUser);
   const categories = useSelector(selectCategories);
   const checkedCategories = useSelector(selectCheckedCategories);
+  const selectChecked = useSelector(selectCheckedTotal);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -69,6 +71,7 @@ const Categories = () => {
           const category = categories[title];
           return <Category key={title} category={category} title={title} />;
         })}
+        <div className="total">Итого: {selectChecked}</div>
         <Button type="submit">Сохранить</Button>
       </form>
     </div>

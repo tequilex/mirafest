@@ -2,7 +2,8 @@
 
 .user-details-container {
   width: 100%;
-  padding: 20px;
+  padding: 100px 20px 20px 20px;
+  ;
 
   .link {
     color: $title;
@@ -26,6 +27,21 @@
     margin-bottom: 20px;
   }
 
+  .user-checks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+    height: 66px;
+    overflow: hidden;
+    transition: 0.4s;
+  }
+
+  .user-checks-list.active {
+    height: 640px;
+    overflow: auto;
+  }
+
   .user-details-item {
     background: rgb(83, 81, 81);
     display: flex;
@@ -44,5 +60,9 @@
     &:hover {
       color: red;
     }
+  }
+
+  .toggle {
+    text-align: center;
   }
 }

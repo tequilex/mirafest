@@ -50,14 +50,14 @@ const AdminPanel = () => {
     return total;
   };
 
-  const deleteUser = async (uid) => {
-    try {
-      await deleteUserFromDatabaseAndAuth(uid);
-      alert("Успех");
-    } catch (error) {
-      alert("Ошибка", error);
-    }
-  };
+  // const deleteUser = async (uid) => {
+  //   try {
+  //     await deleteUserFromDatabaseAndAuth(uid);
+  //     alert("Успех");
+  //   } catch (error) {
+  //     alert("Ошибка", error);
+  //   }
+  // };
 
   return (
     <div className="admin-panel-container">
