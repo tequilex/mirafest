@@ -8,12 +8,12 @@ import { thunk } from 'redux-thunk';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['user', 'userInfo', 'userDetails'],
+    whitelist: ['user', 'userInfo', 'userDetails', 'checkedCategories'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const middleWares = [process.env.NODE_ENV !== 'production' && thunk].filter(Boolean)
+const middleWares = [process.env.NODE_ENV !== 'production' && logger, thunk].filter(Boolean)
 
 const composedEnhancer = (process.env.NODE_ENV !== 'production' && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 
