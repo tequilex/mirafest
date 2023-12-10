@@ -7,6 +7,13 @@ export const selectCheckedCategories = createSelector(
     (categories) => categories.checkedCategories 
 )
 
+export const selectCheckedTotal = createSelector(
+    [selectCheckedCategories],
+    (categories) => categories.reduce((total, item) => total + item.price, 0)
+)
+
+
+
 // export const selectCheckedToAdd = createSelector(
 //     [selectCheckedCategories],
 //     (categories) => categories.some((el) => el.id === categories.id)

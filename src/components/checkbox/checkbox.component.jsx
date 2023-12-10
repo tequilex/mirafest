@@ -15,7 +15,7 @@ const Checkbox = ({ item }) => {
 
   };
 
-  const headerStone = checkedCategories.find(el => el.name === item.name)
+  const filterChecked = checkedCategories.find(el => el.name === item.name)
   
   return (
       <label className="category">
@@ -23,7 +23,7 @@ const Checkbox = ({ item }) => {
           name={item.name}
           value={item.name}
           type="checkbox"
-          checked={headerStone && headerStone.isChecked}
+          checked={filterChecked && filterChecked.isChecked}
           onChange={handleChange}
         />
         {item.name}

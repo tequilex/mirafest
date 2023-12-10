@@ -28,4 +28,6 @@ export const setCheckedCategories = (checkedCategories, checkedToAdd, checked) =
     return createAction(CHECKED_CATEGORIES_ACTION_TYPES.SET_CHECKED_CATEGORIES, newCheckedCategories)
 }
 
+export const setCheckedCategoriesMap = (checkedMap) => createAction(CHECKED_CATEGORIES_ACTION_TYPES.SET_CHECKED_CATEGORIES, checkedMap)
+
 // export const setCheckedCategories = (checkedToAdd) => createAction(CHECKED_CATEGORIES_ACTION_TYPES.SET_CHECKED_CATEGORIES, checkedToAdd)
