@@ -6,173 +6,193 @@ import Button from "../../components/button/button.component";
 import "./user-page.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import {setUserInfo} from "../../store/userInfo/user-info.action"
-import { selectUserInfo } from "../../store/userInfo/user-info.selector"
+import { setUserInfo } from "../../store/userInfo/user-info.action";
+import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 import { Navigate } from "react-router-dom";
 import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
+import { setPackages } from '../../store/packages/packages.action';
+import { selectPackages } from '../../store/packages/packages.selector';
 // import DATA_CATEGORIES from "../../data-categories";
 // import DATA_PACKAGES from '../../data-packages'
 
 const UserPage = () => {
-    const userInfo = useSelector(selectUserInfo);
-    const currentUser = useSelector(selectCurrentUser);
-    const dispatch = useDispatch();
-    const checkedCategories = useSelector(selectCheckedCategories)
+  const dispatch = useDispatch();
+  const userInfo = useSelector(selectUserInfo);
+  const currentUser = useSelector(selectCurrentUser);
+  const checkedCategories = useSelector(selectCheckedCategories);
+  const packagesMap = useSelector(selectPackages)
 
-    console.log(checkedCategories);
+  console.log(packagesMap);
 
-    const [formFields, setFormFields] = useState(userInfo);
+  const [formFields, setFormFields] = useState(userInfo);
 
-    // useEffect(() => {
-    //     addCollectionAndDocuments('categories', DATA_CATEGORIES)
-    // }, [])
+  // useEffect(() => {
+  //     addCollectionAndDocuments('categories', DATA_CATEGORIES)
+  // }, [])
 
-    // useEffect(() => {
-    //     addCollectionAndDocuments('packages', DATA_PACKAGES)
-    // }, [])
+  // useEffect(() => {
+  //     addCollectionAndDocuments('packages', DATA_PACKAGES)
+  // }, [])
 
-    useEffect(() => {
-        const getUserDocs = async () => {
-            if (!currentUser) return;
-            try {
-                const docs = await getUserDoc(currentUser);
-                dispatch(setUserInfo(docs));
-            } catch (error) {
-                console.error(error);
-            }
-        };
+  useEffect(() => {
+    const getUserDocs = async () => {
+      if (!currentUser) return;
+      try {
+        const docs = await getUserDoc(currentUser);
+        dispatch(setUserInfo(docs));
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-        getUserDocs();
-    }, [currentUser]);
+    getUserDocs();
+  }, [currentUser]);
 
-    useEffect(() => {
-        setFormFields(userInfo);
-    }, [userInfo]);
+  useEffect(() => {
+    setFormFields(userInfo);
+  }, [userInfo]);
 
-    if (userInfo.role === "admin") {
-        return <Navigate to='/apanel' replace />
+  useEffect(() => {
+    const getPackages = async () => {
+      try {
+        const packagesMap = await getPackagesAndDocuments();
+        dispatch(setPackages(packagesMap));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getPackages();
+  }, []);
+
+  if (userInfo.role === "admin") {
+    return <Navigate to="/apanel" replace />;
+  }
+
+  const {
+    displayName,
+    birthday,
+    city,
+    email,
+    number,
+    skill,
+    mentor,
+    choisedPackage,
+    nameCollective,
+  } = formFields;
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await updateUserDoc(currentUser, formFields);
+      alert("Профиль обновлен!");
+    } catch (error) {
+      alert("Произошла ошибка при обновлении профиля!", error);
     }
+  };
 
-    const {
-        displayName,
-        birthday,
-        city,
-        email,
-        number,
-        skill,
-        mentor,
-        choisedPackage,
-        nameCollective
-    } = formFields;
+  return (
+    <div className="user-container">
+      <h2 className="title">Анкета</h2>
+      <form className="form-user" onSubmit={handleSubmit}>
+        <FormInput
+          label="ФИО (НАЗВАНИЕ ГРУППЫ)"
+          required
+          type="text"
+          onChange={handleChange}
+          name="displayName"
+          value={displayName || ""}
+        />
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormFields({ ...formFields, [name]: value });
-    };
+        <FormInput
+          label="Дата рождения"
+          required
+          type="text"
+          onChange={handleChange}
+          name="birthday"
+          value={birthday || ""}
+        />
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            await updateUserDoc(currentUser, formFields);
-            alert("Профиль обновлен!");
-        } catch (error) {
-            alert("Произошла ошибка при обновлении профиля!", error);
-        }
-    };
+        <FormInput
+          label="Город"
+          required
+          type="text"
+          onChange={handleChange}
+          name="city"
+          value={city || ""}
+        />
 
-    return (
-        <div className="user-container">
-            <h2 className="title">Анкета</h2>
-            <form className="form-user" onSubmit={handleSubmit}>
-                <FormInput
-                    label="ФИО (НАЗВАНИЕ ГРУППЫ)"
-                    required
-                    type="text"
-                    onChange={handleChange}
-                    name="displayName"
-                    value={displayName || ""}
-                />
+        <FormInput
+          label="Email"
+          required
+          type="email"
+          onChange={handleChange}
+          name="email"
+          value={email || ""}
+        />
 
-                <FormInput
-                    label="Дата рождения"
-                    required
-                    type="text"
-                    onChange={handleChange}
-                    name="birthday"
-                    value={birthday || ""}
-                />
+        <FormInput
+          label="Номер телефона"
+          required
+          type="tel"
+          onChange={handleChange}
+          name="number"
+          value={number || ""}
+        />
 
-                <FormInput
-                    label="Город"
-                    required
-                    type="text"
-                    onChange={handleChange}
-                    name="city"
-                    value={city || ""}
-                />
+        <FormInput
+          label="Название коллектива"
+          type="text"
+          onChange={handleChange}
+          name="nameCollective"
+          value={nameCollective || ""}
+        />
 
-                <FormInput
-                    label="Email"
-                    required
-                    type="email"
-                    onChange={handleChange}
-                    name="email"
-                    value={email || ""}
-                />
+        <FormInput
+          label="ФИО Руководителя"
+          type="text"
+          onChange={handleChange}
+          name="mentor"
+          value={mentor || ""}
+        />
 
-                <FormInput
-                    label="Номер телефона"
-                    required
-                    type="tel"
-                    onChange={handleChange}
-                    name="number"
-                    value={number || ""}
-                />
+        <div className="selects">
+          <div className="select-wrap">
+            <span>Уровень мастерства</span>
+            <select className="select" name="skill" onChange={handleChange}>
+              <option defaultValue="выбрать">{skill}</option>
+              <option>дебют</option>
+              <option>начинающие</option>
+              <option>продолжающие</option>
+              <option>профессионалы</option>
+            </select>
+          </div>
 
-                <FormInput
-                    label="Название коллектива"
-                    type="text"
-                    onChange={handleChange}
-                    name="nameCollective"
-                    value={nameCollective || ""}
-                />
-
-                <FormInput
-                    label="ФИО Руководителя"
-                    type="text"
-                    onChange={handleChange}
-                    name="mentor"
-                    value={mentor || ""}
-                />
-
-                <div className="selects">
-                    <div className="select-wrap">
-                    <span>Уровень мастерства</span>
-                <select className="select" name="skill" onChange={handleChange}>
-                    <option defaultValue="выбрать">{skill}</option>
-                    <option>дебют</option>
-                    <option>начинающие</option>
-                    <option>продолжающие</option>
-                    <option>профессионалы</option>
-                </select>
-                </div>
-
-                <div className="select-wrap">
-                <span>Пакет</span>
-                <select className="select" name="choisedPackage" onChange={handleChange}>
-                    <option defaultValue="выбрать">{choisedPackage}</option>
-                    <option>MAXI</option>
-                    <option>MIDI</option>
-                    <option>MINI</option>
-                    <option>KIDS</option>
-                    <option>STUDY</option>
-                </select>
-                </div>
-                </div>
-
-                <Button type="submit">Сохранить</Button>
-            </form>
+          <div className="select-wrap">
+            <span>Пакет</span>
+            <select
+              className="select"
+              name="choisedPackage"
+              onChange={handleChange}
+            >
+              <option defaultValue="выбрать">{choisedPackage}</option>
+              <option>MAXI</option>
+              <option>MIDI</option>
+              <option>MINI</option>
+              <option>KIDS</option>
+              <option>STUDY</option>
+            </select>
+          </div>
         </div>
-    );
+
+        <Button type="submit">Сохранить</Button>
+      </form>
+    </div>
+  );
 };
 export default UserPage;

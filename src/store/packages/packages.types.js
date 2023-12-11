@@ -1,0 +1,3 @@
+export const PACKAGES_ACTION_TYPES = {
+    SET_PACKAGES: 'SET_PACKAGES',
+}
