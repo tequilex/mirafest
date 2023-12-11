@@ -4,11 +4,13 @@ import { userInfoReducer } from "./userInfo/user-info.reducer";
 import { userDetailsReducer } from "./user-details/user-details.reducer";
 import { categoriesReducer } from "./categories/categories.reducer";
 import { checkedCategoriesReducer } from "./checked-categories/checked-categories.reducer";
+import { packagesReducer } from "./packages/packages.reducer";
 
 export const rootReducer = combineReducers({
     user: userReducer,
     userInfo: userInfoReducer,
     userDetails: userDetailsReducer,
     categories: categoriesReducer,
-    checkedCategories: checkedCategoriesReducer
+    checkedCategories: checkedCategoriesReducer,
+    packages: packagesReducer
 })
