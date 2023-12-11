@@ -12,6 +12,7 @@ import { selectUserInfo } from "../../store/userInfo/user-info.selector"
 import { Navigate } from "react-router-dom";
 import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
 // import DATA_CATEGORIES from "../../data-categories";
+// import DATA_PACKAGES from '../../data-packages'
 
 const UserPage = () => {
     // const { userInfo, currentUser } = useContext(UserContext);
@@ -26,6 +27,10 @@ const UserPage = () => {
 
     // useEffect(() => {
     //     addCollectionAndDocuments('categories', DATA_CATEGORIES)
+    // }, [])
+
+    // useEffect(() => {
+    //     addCollectionAndDocuments('packages', DATA_PACKAGES)
     // }, [])
 
     useEffect(() => {
