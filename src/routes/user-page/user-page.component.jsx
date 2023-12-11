@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { addCollectionAndDocuments, getUserDoc, updateUserDoc } from "../../utils/firebase/firebase.utils";
+import {
+  addCollectionAndDocuments,
+  getPackagesAndDocuments,
+  getUserDoc,
+  updateUserDoc,
+} from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
 import Button from "../../components/button/button.component";
 
@@ -10,8 +15,8 @@ import { setUserInfo } from "../../store/userInfo/user-info.action";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 import { Navigate } from "react-router-dom";
 import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
-import { setPackages } from '../../store/packages/packages.action';
-import { selectPackages } from '../../store/packages/packages.selector';
+import { setPackages } from "../../store/packages/packages.action";
+import { selectPackages } from "../../store/packages/packages.selector";
 // import DATA_CATEGORIES from "../../data-categories";
 // import DATA_PACKAGES from '../../data-packages'
 
@@ -20,7 +25,7 @@ const UserPage = () => {
   const userInfo = useSelector(selectUserInfo);
   const currentUser = useSelector(selectCurrentUser);
   const checkedCategories = useSelector(selectCheckedCategories);
-  const packagesMap = useSelector(selectPackages)
+  const packagesMap = useSelector(selectPackages);
 
   console.log(packagesMap);
 
@@ -89,7 +94,7 @@ const UserPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await updateUserDoc(currentUser, formFields);
+      await updateUserDoc(currentUser, {...formFields, choisedPackage: packagesMap.find((item) => item.title === choisedPackage) });
       alert("Профиль обновлен!");
     } catch (error) {
       alert("Произошла ошибка при обновлении профиля!", error);
@@ -180,12 +185,10 @@ const UserPage = () => {
               name="choisedPackage"
               onChange={handleChange}
             >
-              <option defaultValue="выбрать">{choisedPackage}</option>
-              <option>MAXI</option>
-              <option>MIDI</option>
-              <option>MINI</option>
-              <option>KIDS</option>
-              <option>STUDY</option>
+              {/* <option defaultValue="выбрать">{choisedPackage}</option> */}
+              {packagesMap.map((item) => {
+                return <option key={item.id}>{item.title}</option>
+              })}
             </select>
           </div>
         </div>

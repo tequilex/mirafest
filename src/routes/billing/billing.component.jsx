@@ -4,15 +4,24 @@ import {
   selectCheckedCategories,
   selectCheckedTotal,
 } from "../../store/checked-categories/checked-categories.selector";
+import { selectUserInfo } from "../../store/userInfo/user-info.selector";
+
+
 const Billing = () => {
   const checkedCategories = useSelector(selectCheckedCategories);
   const selectChecked = useSelector(selectCheckedTotal);
-  console.log(selectChecked);
+  const userInfo = useSelector(selectUserInfo);
+  const {choisedPackage} = userInfo
 
   return (
     <div className="billing-container">
       <h2 className="title">Оплата</h2>
       <ul className="categories-block">
+      <div className="package-block">
+        <div className="">Выбранный пакет: {choisedPackage.title}</div>
+        <div className="">Описание: {choisedPackage.description}</div>
+        <div className="">Стоимость: {choisedPackage.price}</div>
+      </div>
       {checkedCategories.length ? (
         checkedCategories.map((item) => {
           return (
