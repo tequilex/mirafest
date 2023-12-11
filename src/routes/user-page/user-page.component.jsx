@@ -1,5 +1,4 @@
-import { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { useState, useEffect } from "react";
 import { addCollectionAndDocuments, getUserDoc, updateUserDoc } from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
 import Button from "../../components/button/button.component";
@@ -15,7 +14,6 @@ import { selectCheckedCategories } from "../../store/checked-categories/checked-
 // import DATA_PACKAGES from '../../data-packages'
 
 const UserPage = () => {
-    // const { userInfo, currentUser } = useContext(UserContext);
     const userInfo = useSelector(selectUserInfo);
     const currentUser = useSelector(selectCurrentUser);
     const dispatch = useDispatch();
