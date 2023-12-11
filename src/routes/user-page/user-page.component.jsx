@@ -82,7 +82,7 @@ const UserPage = () => {
             <h2 className="title">Анкета</h2>
             <form className="form-user" onSubmit={handleSubmit}>
                 <FormInput
-                    label="ФИО"
+                    label="ФИО (НАЗВАНИЕ ГРУППЫ)"
                     required
                     type="text"
                     onChange={handleChange}
