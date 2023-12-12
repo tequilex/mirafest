@@ -5,6 +5,7 @@ import {
   selectCheckedTotal,
 } from "../../store/checked-categories/checked-categories.selector";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
+
 import { selectCategories } from "../../store/categories/categories.selector";
 import { selectBilling } from "../../store/billing/billing.selector";
 import { setBilling } from "../../store/billing/billing.action";
@@ -12,6 +13,8 @@ import { useEffect } from "react";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { getUserDoc } from "../../utils/firebase/firebase.utils";
 import { setUserInfo } from "../../store/userInfo/user-info.action";
+=======
+
 
 const Billing = () => {
   const dispatch = useDispatch();
@@ -19,6 +22,7 @@ const Billing = () => {
   const checkedCategories = useSelector(selectCheckedCategories);
   const userInfo = useSelector(selectUserInfo);
   const { choisedPackage } = userInfo;
+
   const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
@@ -35,6 +39,7 @@ const Billing = () => {
     getUserDocs();
   }, [currentUser]);
 
+
   useEffect(() => {
     dispatch(setBilling(checkedCategories, choisedPackage));
   }, [checkedCategories, choisedPackage]);
@@ -44,8 +49,12 @@ const Billing = () => {
       <h2 className="title">Оплата</h2>
       <ul className="categories-block">
         <div className="package-block">
-          <div className="">Выбранный пакет: {choisedPackage.title}</div>
-          <div className="">Описание: {choisedPackage.description}</div>
+
+          <div className="package-wrap">
+            <div className="">Выбранный пакет: {choisedPackage.title}</div>
+            <div className="">Описание: {choisedPackage.description}</div>
+          </div>
+
           <div className="">Стоимость: {choisedPackage.price}</div>
         </div>
         {checkedCategories.length ? (
@@ -61,7 +70,9 @@ const Billing = () => {
           <span className="no-cats">Нет выбранных категорий</span>
         )}
         <div></div>
+
         <div className="total">Итого: {billingInfo}</div>
+
       </ul>
     </div>
   );

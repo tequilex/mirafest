@@ -28,6 +28,8 @@ const Categories = () => {
   const selectChecked = useSelector(selectCheckedTotal);
   const { choisedPackage } = userInfo;
 
+  console.log(checkedCategories);
+
   useEffect(() => {
     const getCategories = async () => {
       try {

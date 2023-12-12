@@ -16,7 +16,9 @@ const addChecked = (checkedMap, checkedToAdd, checked, title) => {
         }
     }
 
+
     return [...checkedMap, { ...checkedToAdd, isChecked: checked, title: title }];
+
 
 }
 

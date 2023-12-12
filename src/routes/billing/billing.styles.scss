@@ -19,6 +19,16 @@
     gap: 10px;
     border: 1px solid $title;
   }
+
+  .package-block {
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid white;
+    border-radius: 6px;
+    background: rgba(59, 54, 54, 0.436)
+  }
   
   .category {
     padding: 3px;
