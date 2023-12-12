@@ -1,7 +1,7 @@
 @import '../../styles/vars.scss';
 @import "../../styles/mixins.scss";
 
-.sign-in-container {
+.forgot-container {
   background: grey;
   border-radius: 10px;
   padding: 10px;
@@ -19,9 +19,10 @@
     text-align: center;
   }
 
-  .forgot {
+  .toLogin {
     display: inline-block;
     margin-bottom: 10px;
+    text-align: end;
     cursor: pointer;
     transition: 0.3s;
 
@@ -30,18 +31,4 @@
     }
   }
 
-  .goToReg {
-    margin-top: 10px;
-    text-align: center;
-  }
-
-  .goToReg-button {
-    cursor: pointer;
-    color: $title;
-    transition: 0.3s;
-
-    &:hover {
-      color: rgb(255, 145, 0);
-    }
-  }
 }
