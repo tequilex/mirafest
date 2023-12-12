@@ -95,7 +95,8 @@ const UserPage = () => {
       await updateUserDoc(currentUser, {...formFields, choisedPackage: packagesMap.find((item) => item.title === choisedPackage) });
       alert("Профиль обновлен!");
     } catch (error) {
-      alert("Произошла ошибка при обновлении профиля!", error);
+      alert("Произошла ошибка при обновлении профиля!")
+      console.log(error);
     }
   };
 
@@ -183,7 +184,7 @@ const UserPage = () => {
               name="choisedPackage"
               onChange={handleChange}
             >
-              {/* <option defaultValue="выбрать">{choisedPackage}</option> */}
+              <option defaultValue="выбрать"></option>
               {packagesMap.map((item) => {
                 return <option key={item.id}>{item.title}</option>
               })}

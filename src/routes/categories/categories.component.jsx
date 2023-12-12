@@ -27,6 +27,8 @@ const Categories = () => {
   const { choisedPackage } = userInfo;
   console.log(billingInfo);
 
+  console.log(checkedCategories);
+
   useEffect(() => {
     const getCategories = async () => {
       try {
