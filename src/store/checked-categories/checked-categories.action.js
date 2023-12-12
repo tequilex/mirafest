@@ -3,7 +3,7 @@ import { CHECKED_CATEGORIES_ACTION_TYPES } from './checked-categories.types';
 
 // export const setCheckedCategories = (checkedCategories) => createAction(CHECKED_CATEGORIES_ACTION_TYPES.SET_CHECKED_CATEGORIES, checkedCategories)
 
-const addChecked = (checkedMap, checkedToAdd, checked) => {
+const addChecked = (checkedMap, checkedToAdd, checked, title) => {
     const existingChecked = checkedMap.find((checkedItem) => checkedItem.id === checkedToAdd.id);
 
     console.log(existingChecked);
@@ -19,12 +19,12 @@ const addChecked = (checkedMap, checkedToAdd, checked) => {
         }
     }
 
-    return [...checkedMap, { ...checkedToAdd, isChecked: checked }];
+    return [...checkedMap, { ...checkedToAdd, isChecked: checked, title: title, }];
 
 }
 
-export const setCheckedCategories = (checkedCategories, checkedToAdd, checked) => {
-    const newCheckedCategories = addChecked(checkedCategories, checkedToAdd, checked)
+export const setCheckedCategories = (checkedCategories, checkedToAdd, checked, title) => {
+    const newCheckedCategories = addChecked(checkedCategories, checkedToAdd, checked, title)
     return createAction(CHECKED_CATEGORIES_ACTION_TYPES.SET_CHECKED_CATEGORIES, newCheckedCategories)
 }
 

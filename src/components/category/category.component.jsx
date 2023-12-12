@@ -7,7 +7,7 @@ const Category = ({ title, category }) => {
     <div className="category-block">
       <h3 className="category-title">{title}</h3>
       {category.map((item) => (
-        <Checkbox key={item.id} item={item}/>
+        <Checkbox key={item.id} item={item} title={title}/>
       ))}
     </div>
   );

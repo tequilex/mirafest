@@ -24,6 +24,8 @@ const Categories = () => {
   const checkedCategories = useSelector(selectCheckedCategories);
   const selectChecked = useSelector(selectCheckedTotal);
 
+  console.log(checkedCategories);
+
   useEffect(() => {
     const getCategories = async () => {
       try {
