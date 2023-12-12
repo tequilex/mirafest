@@ -6,9 +6,6 @@ import { CHECKED_CATEGORIES_ACTION_TYPES } from './checked-categories.types';
 const addChecked = (checkedMap, checkedToAdd, checked, title) => {
     const existingChecked = checkedMap.find((checkedItem) => checkedItem.id === checkedToAdd.id);
 
-    console.log(existingChecked);
-
-
     if (existingChecked) {
         if (checked) {
             return checkedMap.map((checkedItem) =>
@@ -19,7 +16,9 @@ const addChecked = (checkedMap, checkedToAdd, checked, title) => {
         }
     }
 
-    return [...checkedMap, { ...checkedToAdd, isChecked: checked, title: title, }];
+
+    return [...checkedMap, { ...checkedToAdd, isChecked: checked, title: title }];
+
 
 }
 

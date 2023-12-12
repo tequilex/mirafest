@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectCheckedCategories, selectCheckedToAdd } from '../../store/checked-categories/checked-categories.selector'
+import { selectCheckedCategories } from '../../store/checked-categories/checked-categories.selector'
 import { setCheckedCategories } from '../../store/checked-categories/checked-categories.action'
 import './checbox.styles.scss'
 

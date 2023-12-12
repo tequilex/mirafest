@@ -14,15 +14,19 @@ import { setCategories } from "../../store/categories/categories.action";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { selectCheckedCategories, selectCheckedTotal } from "../../store/checked-categories/checked-categories.selector";
 import { setCheckedCategories, setCheckedCategoriesMap } from "../../store/checked-categories/checked-categories.action";
+import { setBilling } from "../../store/billing/billing.action";
+import { selectBilling } from "../../store/billing/billing.selector";
 
 
 const Categories = () => {
   const userInfo = useSelector(selectUserInfo);
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const billingInfo = useSelector(selectBilling);
   const categories = useSelector(selectCategories);
   const checkedCategories = useSelector(selectCheckedCategories);
   const selectChecked = useSelector(selectCheckedTotal);
+  const { choisedPackage } = userInfo;
 
   console.log(checkedCategories);
 
@@ -54,6 +58,10 @@ const Categories = () => {
     getUserDocs();
 }, [currentUser]);
 
+useEffect(() => {
+  dispatch(setBilling(checkedCategories, choisedPackage));
+}, [checkedCategories, choisedPackage]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -73,7 +81,7 @@ const Categories = () => {
           const category = categories[title];
           return <Category key={title} category={category} title={title} />;
         })}
-        <div className="total">Итого: {selectChecked}</div>
+        <div className="total">Итого: {billingInfo}</div>
         <Button type="submit">Сохранить</Button>
       </form>
     </div>

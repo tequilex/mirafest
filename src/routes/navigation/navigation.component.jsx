@@ -9,7 +9,6 @@ import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 const Navigation = () => {
     const userInfo = useSelector(selectUserInfo);
     const { role } = userInfo;
-    console.log(userInfo);
 
     const dispatch = useDispatch();
     const signOutHandler = async () => {

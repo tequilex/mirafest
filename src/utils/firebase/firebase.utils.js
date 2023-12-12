@@ -1,12 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, push, child, ref, query } from "firebase/database";
+import { getDatabase, query } from "firebase/database";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  deleteUser,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -16,17 +15,16 @@ import {
   updateDoc,
   collection,
   getDocs,
-  deleteDoc,
   writeBatch,
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCk49qlX_lYLyRfLp85cWawzyMNx4hjfWU",
-  authDomain: "festival-miramar.firebaseapp.com",
-  projectId: "festival-miramar",
-  storageBucket: "festival-miramar.appspot.com",
-  messagingSenderId: "227608357816",
-  appId: "1:227608357816:web:29509a3ecfb40909f23d4d"
+  apiKey: "AIzaSyD0k5e89drCeeXAkhmRbU6-5eRrfrbfl0g",
+  authDomain: "mirabd-c8606.firebaseapp.com",
+  projectId: "mirabd-c8606",
+  storageBucket: "mirabd-c8606.appspot.com",
+  messagingSenderId: "70777071568",
+  appId: "1:70777071568:web:75367a8cd05c3f7af2fbd5"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -132,13 +130,13 @@ export const getUserDocs = async () => {
   return userDocs;
 }
 
-export const deleteUserFromDatabaseAndAuth = async (userAuth) => {
-  console.log(userAuth);
-  const userDocRef = doc(db, "users", userAuth.uid);
-  // await deleteDoc(userDocRef);
+// export const deleteUserFromDatabaseAndAuth = async (userAuth) => {
+//   console.log(userAuth);
+//   const userDocRef = doc(db, "users", userAuth.uid);
+//   // await deleteDoc(userDocRef);
 
-  await deleteUser();
-}
+//   await deleteUser();
+// }
 
 export const addCollectionAndDocuments = async (
   collectionKey,

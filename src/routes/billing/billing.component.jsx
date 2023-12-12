@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./billing.styles.scss";
 import {
   selectCheckedCategories,
@@ -6,47 +6,55 @@ import {
 } from "../../store/checked-categories/checked-categories.selector";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 
+import { selectCategories } from "../../store/categories/categories.selector";
+import { selectBilling } from "../../store/billing/billing.selector";
+import { setBilling } from "../../store/billing/billing.action";
+import { useEffect } from "react";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { getUserDoc } from "../../utils/firebase/firebase.utils";
+import { setUserInfo } from "../../store/userInfo/user-info.action";
+=======
+
+
 const Billing = () => {
+  const dispatch = useDispatch();
+  const billingInfo = useSelector(selectBilling);
   const checkedCategories = useSelector(selectCheckedCategories);
-  const selectChecked = useSelector(selectCheckedTotal);
   const userInfo = useSelector(selectUserInfo);
   const { choisedPackage } = userInfo;
 
+  const currentUser = useSelector(selectCurrentUser);
 
-  const pizdec = (checkedCategories, choisedPackage) => {
-    const price = checkedCategories?.reduce((summ, curr) => {
-      const index = choisedPackage.exist.findIndex((obj) => Object.keys(obj)[0] === curr.title);
-  
-      if (index !== -1) {
-        const count = Object.values(choisedPackage.exist[index])[0];
-  
-        if (count > 0) {
-          choisedPackage.exist[index][curr.title] = count - 1;
-        } else {
-          return summ + curr.price
-        }
+  useEffect(() => {
+    const getUserDocs = async () => {
+      if (!currentUser) return;
+      try {
+        const docs = await getUserDoc(currentUser);
+        dispatch(setUserInfo(docs));
+      } catch (error) {
+        console.error(error);
       }
-      return summ
-    }, 0)
+    };
 
-    return price
-  }
+    getUserDocs();
+  }, [currentUser]);
 
+
+  useEffect(() => {
+    dispatch(setBilling(checkedCategories, choisedPackage));
+  }, [checkedCategories, choisedPackage]);
   
-  
-
-console.log(userInfo);
-// console.log(price);
-
   return (
     <div className="billing-container">
       <h2 className="title">Оплата</h2>
       <ul className="categories-block">
         <div className="package-block">
+
           <div className="package-wrap">
             <div className="">Выбранный пакет: {choisedPackage.title}</div>
             <div className="">Описание: {choisedPackage.description}</div>
           </div>
+
           <div className="">Стоимость: {choisedPackage.price}</div>
         </div>
         {checkedCategories.length ? (
@@ -62,7 +70,9 @@ console.log(userInfo);
           <span className="no-cats">Нет выбранных категорий</span>
         )}
         <div></div>
-        <div className="total">Итого:{}</div>
+
+        <div className="total">Итого: {billingInfo}</div>
+
       </ul>
     </div>
   );
