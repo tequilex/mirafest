@@ -1,24 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./billing.styles.scss";
-import {
-  selectCheckedCategories,
-  selectCheckedTotal,
-} from "../../store/checked-categories/checked-categories.selector";
+import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
-import { selectCategories } from "../../store/categories/categories.selector";
-import { selectBilling } from "../../store/billing/billing.selector";
-import { setBilling } from "../../store/billing/billing.action";
 import { useEffect } from "react";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { getUserDoc } from "../../utils/firebase/firebase.utils";
 import { setUserInfo } from "../../store/userInfo/user-info.action";
+import { Link } from "react-router-dom";
 
 const Billing = () => {
   const dispatch = useDispatch();
-  const billingInfo = useSelector(selectBilling);
   const checkedCategories = useSelector(selectCheckedCategories);
   const userInfo = useSelector(selectUserInfo);
-  const { choisedPackage } = userInfo;
+  const { choisedPackage, checkout } = userInfo;
   const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
@@ -33,27 +27,31 @@ const Billing = () => {
     };
 
     getUserDocs();
-  }, [currentUser]);
+  }, [currentUser, dispatch]);
 
-  useEffect(() => {
-    dispatch(setBilling(checkedCategories, choisedPackage));
-  }, [checkedCategories, choisedPackage]);
-  
+  // useEffect(() => {
+  //   dispatch(setBilling(checkedCategories, choisedPackage));
+  // }, [checkedCategories, choisedPackage, dispatch]);
+
   return (
     <div className="billing-container">
       <h2 className="title">Оплата</h2>
       <ul className="categories-block">
-        <div className="package-block">
-          <div className="">Выбранный пакет: {choisedPackage.title}</div>
-          <div className="">Описание: {choisedPackage.description}</div>
-          <div className="">Стоимость: {choisedPackage.price}</div>
-        </div>
-        {checkedCategories.length ? (
+        {choisedPackage.length ? (
+          <div className="package-block">
+            <div className="">Выбранный пакет: {choisedPackage.title}</div>
+            <div className="">Описание: {choisedPackage.description}</div>
+            <div className="">Стоимость: {choisedPackage.price}</div>
+          </div>
+        ) : (
+          <Link to={`/categories`}>Выберите пакет</Link>
+        )}
+        {checkedCategories ? (
           checkedCategories.map((item) => {
             return (
               <li className="category" key={item.name}>
                 <div className="">{item.name}</div>
-                <div className="">~{item.price}</div>
+                <div className="">{item.price}</div>
               </li>
             );
           })
@@ -61,7 +59,7 @@ const Billing = () => {
           <span className="no-cats">Нет выбранных категорий</span>
         )}
         <div></div>
-        <div className="total">Итого: {billingInfo}</div>
+        <div className="total">Итого: {checkout ? checkout : 0}</div>
       </ul>
     </div>
   );

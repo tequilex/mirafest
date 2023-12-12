@@ -12,21 +12,20 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import { setCategories } from "../../store/categories/categories.action";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import { selectCheckedCategories, selectCheckedTotal } from "../../store/checked-categories/checked-categories.selector";
-import { setCheckedCategories, setCheckedCategoriesMap } from "../../store/checked-categories/checked-categories.action";
+import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
+import { setCheckedCategoriesMap } from "../../store/checked-categories/checked-categories.action";
 import { setBilling } from "../../store/billing/billing.action";
 import { selectBilling } from "../../store/billing/billing.selector";
 
-
 const Categories = () => {
-  const userInfo = useSelector(selectUserInfo);
   const dispatch = useDispatch();
+  const userInfo = useSelector(selectUserInfo);
   const currentUser = useSelector(selectCurrentUser);
   const billingInfo = useSelector(selectBilling);
   const categories = useSelector(selectCategories);
   const checkedCategories = useSelector(selectCheckedCategories);
-  const selectChecked = useSelector(selectCheckedTotal);
   const { choisedPackage } = userInfo;
+  console.log(billingInfo);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -39,31 +38,35 @@ const Categories = () => {
     };
 
     getCategories();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const getUserDocs = async () => {
-        if (!currentUser) return;
-        try {
-            const docs = await getUserDoc(currentUser);
-            const { checkedCategories } = docs;
-            dispatch(setCheckedCategoriesMap(checkedCategories))
-        } catch (error) {
-            console.error(error);
-        }
+      if (!currentUser) return;
+      try {
+        const docs = await getUserDoc(currentUser);
+        const { checkedCategories } = docs;
+        dispatch(setCheckedCategoriesMap(checkedCategories));
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     getUserDocs();
-}, [currentUser]);
 
-useEffect(() => {
-  dispatch(setBilling(checkedCategories, choisedPackage));
-}, [checkedCategories, choisedPackage]);
+    // if (userInfo) {
+    //   dispatch(setBilling(checkedCategories, choisedPackage));
+    // }
+  }, [currentUser, dispatch]);
+
+  useEffect(() => {
+    dispatch(setBilling(checkedCategories, choisedPackage));
+  }, [checkedCategories, choisedPackage, dispatch]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await updateUserDoc(currentUser, { checkedCategories });
+      await updateUserDoc(currentUser, { checkedCategories, checkout: billingInfo });
       alert("Профиль обновлен!");
     } catch (error) {
       alert("Произошла ошибка при обновлении профиля!", error);
@@ -79,7 +82,7 @@ useEffect(() => {
           const category = categories[title];
           return <Category key={title} category={category} title={title} />;
         })}
-        <div className="total">Итого: {billingInfo}</div>
+        <div className="total">Итого: {billingInfo ? billingInfo : 0}</div>
         <Button type="submit">Сохранить</Button>
       </form>
     </div>

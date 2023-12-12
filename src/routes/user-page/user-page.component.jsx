@@ -14,7 +14,6 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 import { setUserInfo } from "../../store/userInfo/user-info.action";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 import { Navigate } from "react-router-dom";
-import { selectCheckedCategories } from "../../store/checked-categories/checked-categories.selector";
 import { setPackages } from "../../store/packages/packages.action";
 import { selectPackages } from "../../store/packages/packages.selector";
 // import DATA_CATEGORIES from "../../data-categories";
@@ -24,7 +23,6 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUserInfo);
   const currentUser = useSelector(selectCurrentUser);
-  const checkedCategories = useSelector(selectCheckedCategories);
   const packagesMap = useSelector(selectPackages);
 
   console.log(packagesMap);
@@ -51,7 +49,7 @@ const UserPage = () => {
     };
 
     getUserDocs();
-  }, [currentUser]);
+  }, [currentUser, dispatch]);
 
   useEffect(() => {
     setFormFields(userInfo);
@@ -68,7 +66,7 @@ const UserPage = () => {
     };
 
     getPackages();
-  }, []);
+  }, [dispatch]);
 
   if (userInfo.role === "admin") {
     return <Navigate to="/apanel" replace />;

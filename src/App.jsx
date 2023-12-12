@@ -18,6 +18,7 @@ import ErrorPage from './components/error-page/error-page'
 import ProtectedRouteAdmin from "./routes/protected-route-admin/protected-route-admin";
 import AdminPanel from "./routes/admin-panel/admin-panel";
 import UserDetails from "./components/admin/user-details/user-details";
+import ResetPage from "./components/reset-page";
 
 const App = () => {
     const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const App = () => {
                 path: 'sign-up',
                 element: <SignUpForm />
             },
+            {
+                path: 'reset-password',
+                element: <ResetPage />
+            }
             ]
         },
         {
