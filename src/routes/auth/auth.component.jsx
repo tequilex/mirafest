@@ -11,7 +11,7 @@ import {
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { setCurrentUser } from "../../store/user/user.action";
 import { useDispatch, useSelector } from "react-redux";
-import ResetPage from "../../components/reset-page";
+import ResetPage from "../reset-page/reset-page.component";
 
 const Auth = () => {
   const location = useLocation();
@@ -38,7 +38,7 @@ const Auth = () => {
           <Navigate to={`/user`} />
         ) : location.pathname === "/auth/sign-up" ? (
           <SignUpForm />
-        ) : location.pathname === "/auth/reset-password" ? (
+        ) : location.pathname === "/auth/reset" ? (
           <ResetPage />
         ) : (
           <SignInForm />

@@ -4,7 +4,7 @@ import "./categories.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 import { selectCategories } from "../../store/categories/categories.selector";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   getCategoriesAndDocuments,
   getUserDoc,

@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendEmailVerification,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import {
   getFirestore,
@@ -16,15 +18,16 @@ import {
   collection,
   getDocs,
   writeBatch,
+  deleteDoc
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0k5e89drCeeXAkhmRbU6-5eRrfrbfl0g",
-  authDomain: "mirabd-c8606.firebaseapp.com",
-  projectId: "mirabd-c8606",
-  storageBucket: "mirabd-c8606.appspot.com",
-  messagingSenderId: "70777071568",
-  appId: "1:70777071568:web:75367a8cd05c3f7af2fbd5"
+  apiKey: "AIzaSyCk49qlX_lYLyRfLp85cWawzyMNx4hjfWU",
+  authDomain: "festival-miramar.firebaseapp.com",
+  projectId: "festival-miramar",
+  storageBucket: "festival-miramar.appspot.com",
+  messagingSenderId: "227608357816",
+  appId: "1:227608357816:web:29509a3ecfb40909f23d4d"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -85,7 +88,6 @@ export const getPackagesAndDocuments = async () => {
     const data = docSnapshot.data();
 
     return data
-    
   })
 
   return packageMap;
@@ -130,13 +132,20 @@ export const getUserDocs = async () => {
   return userDocs;
 }
 
-// export const deleteUserFromDatabaseAndAuth = async (userAuth) => {
-//   console.log(userAuth);
-//   const userDocRef = doc(db, "users", userAuth.uid);
-//   // await deleteDoc(userDocRef);
+export const sendVerification = async () => {
+  await sendEmailVerification(auth.currentUser)
+}
 
-//   await deleteUser();
-// }
+export const sendResetPassword = async (email) => {
+  await sendPasswordResetEmail(auth, email)
+}
+
+export const deleteUserFromDatabaseAndAuth = async (userAuth) => {
+  console.log(userAuth);
+  const userDocRef = doc(db, "users", userAuth.uid);
+  await deleteDoc(userDocRef);
+
+}
 
 export const addCollectionAndDocuments = async (
   collectionKey,
@@ -154,17 +163,5 @@ export const addCollectionAndDocuments = async (
   console.log("done");
 };
 
-
-// export const updateUserCategoryDoc = async (userAuth, checked) => {
-//   const userDocRef = doc(db, "users", userAuth.uid);
-//   const path = `DATA_CATEGORIES`
-//   await updateDoc(userDocRef, {[path]: checked})
-// }
-
-
-// export const updateCat = (userAuth) => {
-//   const dbRef = ref(database, 'users/' + userAuth.uid)
-//   console.log(dbRef);
-// }
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

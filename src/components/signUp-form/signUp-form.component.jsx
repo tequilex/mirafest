@@ -5,6 +5,7 @@ import Button from "../button/button.component";
 import {
     createAuthUserWithEmailAndPassword,
     createUserDocumentFromAuth,
+    sendVerification
 } from "../../utils/firebase/firebase.utils";
 import { useNavigate } from "react-router-dom";
 
@@ -40,6 +41,9 @@ const SignUpForm = () => {
                 email,
                 password
             );
+
+            // await sendVerification()
+
             await createUserDocumentFromAuth(user, {
                 displayName,
                 city,
@@ -55,7 +59,7 @@ const SignUpForm = () => {
                 checkedCategories: []
             });
             setFormFields(defaultFormFields);
-            navigate("/user");
+            // navigate("/user");
         } catch (error) {
             if (error.code === "auth/email-already-in-use") {
                 alert("Пользователь с таким email уже зарегистрирован");

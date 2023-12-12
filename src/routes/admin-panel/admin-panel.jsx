@@ -36,7 +36,8 @@ const AdminPanel = () => {
     };
 
     userDocs();
-  }, [dispatch]);
+  }, []);
+
   const handleChange = (email) => {
     navigate(`/apanel/${email}`);
   };
@@ -49,6 +50,17 @@ const AdminPanel = () => {
     return total;
   };
 
+  const deleteUser = async (uid) => {
+    try {
+      await deleteUserFromDatabaseAndAuth(uid);
+      alert("Успех");
+      window.location.reload();
+    } catch (error) {
+      alert("Ошибка", error);
+      console.log(error);
+    }
+  };
+
   return (
     <div className="admin-panel-container">
       <h2 className="title">Админка</h2>
@@ -56,13 +68,18 @@ const AdminPanel = () => {
       <ul className="users-list">
         {userDetails.map((user) =>
           user.role === "admin" ? null : (
+            <>
             <li
               className="user"
               key={user.uid}
               onClick={() => handleChange(user.email)}
             >
-              {user.displayName}
+              <div className="">{user.displayName}</div>
+              
+
             </li>
+            <div onClick={() => deleteUser(user)} className="">удалить</div>
+            </>
           )
         )}
       </ul>
