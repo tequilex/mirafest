@@ -3,6 +3,8 @@ import { BILLING_ACTION_TYPES } from "./billing.types"
 
 const totalBilling = (checkedCategories, choisedPackage) => {
 
+    
+
     const { price: sumPackage } = choisedPackage
     console.log(sumPackage);
 
@@ -23,7 +25,7 @@ const totalBilling = (checkedCategories, choisedPackage) => {
         return summ
     }, 0)
 
-    return price + sumPackage
+    return price 
 };
 
 export const setBilling = (checkedCategories, choisedPackage) => {
