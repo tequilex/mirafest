@@ -6,7 +6,6 @@ import "./signIn-form.styles.scss";
 import {
   signInAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
-  sendResetPassword
 } from "../../utils/firebase/firebase.utils";
 
 import { useNavigate } from "react-router-dom";
@@ -41,25 +40,21 @@ const SignInForm = () => {
         email,
         password
       );
-      console.log(user);
 
       if (user.displayName === null) {
         await createUserDocumentFromAuth(user, {
-          displayName: "",
+          displayName: "Имя не указано",
           city: "не указан",
           birthday: "не указан",
           mentor: "не указан",
           number: "не указан",
           skill: "не выбран",
-          choisedPackage: "не выбран",
           role: "user",
           nameCollective: "не указан",
           linkDisk: "не указана",
           uid: user.uid,
           checkedCategories: [],
         });
-
-        console.log("ggg");
       }
 
       resetFormFields();

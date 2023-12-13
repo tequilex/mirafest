@@ -22,12 +22,12 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD0k5e89drCeeXAkhmRbU6-5eRrfrbfl0g",
-  authDomain: "mirabd-c8606.firebaseapp.com",
-  projectId: "mirabd-c8606",
-  storageBucket: "mirabd-c8606.appspot.com",
-  messagingSenderId: "70777071568",
-  appId: "1:70777071568:web:75367a8cd05c3f7af2fbd5"
+  apiKey: process.env.REACT_APP_KEY,
+  authDomain: process.env.REACT_APP_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_BUCKET,
+  messagingSenderId: process.env.REACT_APP_SENDERID,
+  appId: process.env.REACT_APP_APPID
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -142,7 +142,7 @@ export const sendResetPassword = async (email) => {
 
 export const deleteUserFromDatabaseAndAuth = async (userAuth) => {
   console.log(userAuth);
-  const userDocRef = doc(db, "users", userAuth.uid);
+  const userDocRef = doc(db, "users", userAuth);
   await deleteDoc(userDocRef);
 
 }

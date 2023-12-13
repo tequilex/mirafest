@@ -29,7 +29,6 @@ const MusicPage = () => {
     }
   }
 
-  console.log(link);
   return (
     <div className="music-container">
       <h2 className="title">Музыка</h2>

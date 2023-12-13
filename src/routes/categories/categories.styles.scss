@@ -21,6 +21,24 @@
     text-align: end;
     font-size: 20px;
     font-weight: bold;
+  }
 
+  .no-items {
+    background: gre;
+    padding: 3px;
+    display: flex;
+    border: 1px solid white;
+    border-radius: 6px;
+    background: rgba(80, 76, 76, 0.687)
+  }
+
+  .no-link {
+    font-size: 17px;
+    color: $title;
+    transition: 0.3s;
+
+    &:hover {
+      color: white
+    }
   }
 }

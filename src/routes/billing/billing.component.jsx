@@ -29,13 +29,6 @@ const Billing = () => {
     getUserDocs();
   }, [currentUser, dispatch]);
 
-  console.log(choisedPackage);
-  console.log(checkedCategories);
-
-  // useEffect(() => {
-  //   dispatch(setBilling(checkedCategories, choisedPackage));
-  // }, [checkedCategories, choisedPackage, dispatch]);
-
   return (
     <div className="billing-container">
       <h2 className="title">Оплата</h2>
@@ -43,9 +36,13 @@ const Billing = () => {
         {choisedPackage ? (
           <>
             <div className="package-block">
-              <div className="">Выбранный пакет: {choisedPackage.title}</div>
-              <div className="">Описание: {choisedPackage.description}</div>
-              <div className="">Стоимость: {choisedPackage.price}</div>
+              <div className="block-left">
+                <div className="">Выбранный пакет: {choisedPackage.title}</div>
+                <div className="">Описание: {choisedPackage.description}</div>
+              </div>
+              <div className="block-right">
+                <div className="">Стоимость: {choisedPackage.price}</div>
+              </div>
             </div>
             {checkedCategories.length ? (
               checkedCategories.map((item) => {
@@ -57,16 +54,15 @@ const Billing = () => {
                 );
               })
             ) : (
-              <span className="no-cats">
-                Нет выбранных номинаций -
-                <Link to={`/categories`}> выберите номинации для участия</Link>
+              <span className="no-items">
+                <Link className="no-link" to={`/categories`}>Выберите номинации для участия</Link>
               </span>
             )}
           </>
         ) : (
-          <span>
-            <Link to={`/user`}>Выберите пакет</Link>
-          </span>
+          <div className="no-items">
+            <Link className="no-link" to={`/user`}>Выберите пакет</Link>
+          </div>
         )}
         <div></div>
         <div className="total">Итого: {checkout ? checkout : 0}</div>

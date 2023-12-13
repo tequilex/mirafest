@@ -7,7 +7,6 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
 import Button from "../../components/button/button.component";
-
 import "./user-page.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
@@ -24,8 +23,6 @@ const UserPage = () => {
   const userInfo = useSelector(selectUserInfo);
   const currentUser = useSelector(selectCurrentUser);
   const packagesMap = useSelector(selectPackages);
-
-  console.log(packagesMap);
 
   const [formFields, setFormFields] = useState(userInfo);
 

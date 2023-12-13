@@ -20,11 +20,47 @@
     margin: 0px 0px 20px 0;
   }
 
+  .del-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .del-wrap {
+    border: 1px solid grey;
+    background: rgba(201, 35, 35, 0.646);
+    padding: 3px;
+    border-radius: 6px;
+  }
+
+  .del {
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: $title;
+    }
+  }
+
+  .inform {
+    text-align: center;
+    font-size: 14px;
+  }
+
   .user-details-list {
+    overflow: hidden;
+    max-height: 203px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+    transition: 0.6s;
+  }
+
+  .user-details-list.active {
+    max-height: 450px;
+    overflow: auto;
   }
 
   .user-checks-list {
@@ -32,15 +68,9 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
-    height: 66px;
-    overflow: hidden;
     transition: 0.4s;
   }
 
-  .user-checks-list.active {
-    height: 640px;
-    overflow: auto;
-  }
 
   .user-details-item {
     background: rgb(83, 81, 81);
@@ -64,5 +94,24 @@
 
   .toggle {
     text-align: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: $title;
+    }
   }
+
+  .checkout {
+    font-weight: bold;
+    font-size: 17px;
+    text-align: end;
+    background: rgba(186, 130, 11, 0.688);;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
 }

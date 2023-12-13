@@ -26,7 +26,6 @@ const Categories = () => {
   const categories = useSelector(selectCategories);
   const checkedCategories = useSelector(selectCheckedCategories);
   const { choisedPackage } = userInfo;
-  console.log(choisedPackage);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -58,7 +57,6 @@ const Categories = () => {
 
   useEffect(() => {
     if (choisedPackage) {
-      console.log(1);
       dispatch(setBilling(checkedCategories, choisedPackage));
     }
   }, [checkedCategories, choisedPackage, dispatch]);
@@ -80,7 +78,7 @@ const Categories = () => {
   return (
     <div className="categories-container">
       <h2 className="title">Участие</h2>
-      {choisedPackage ? (
+      {choisedPackage && checkedCategories ? (
         <form className="form-categories" onSubmit={handleSubmit}>
           {Object.keys(categories).map((title) => {
             const category = categories[title];
@@ -90,9 +88,9 @@ const Categories = () => {
           <Button type="submit">Сохранить</Button>
         </form>
       ) : (
-        <span>
-          <Link to={`/user`}>Выберите пакет</Link>
-        </span>
+        <div className="no-items">
+          <Link className="no-link" to={`/user`}>Выберите пакет</Link>
+        </div>
       )}
     </div>
   );

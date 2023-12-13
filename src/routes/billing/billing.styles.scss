@@ -21,6 +21,7 @@
   }
 
   .package-block {
+    gap: 5px;
     padding: 3px;
     display: flex;
     align-items: center;
@@ -39,8 +40,22 @@
     background: rgba(59, 54, 54, 0.436)
   }
 
-  .no-cats {
+  .no-items {
+    padding: 3px;
+    display: flex;
+    border: 1px solid white;
+    border-radius: 6px;
+    background: rgba(59, 54, 54, 0.436)
+  }
 
+  .no-link {
+    font-size: 17px;
+    color: $title;
+    transition: 0.3s;
+
+    &:hover {
+      color: white
+    }
   }
 
   .total {
