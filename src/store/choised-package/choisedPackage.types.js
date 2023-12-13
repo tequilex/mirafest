@@ -1,0 +1,3 @@
+export const CHOISED_PACKAGE_ACTION_TYPES = {
+    SET_CHOISED_PACKAGE: 'choisedPackage/SET_CHOISED_PACKAGE',
+}

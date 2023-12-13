@@ -4,7 +4,7 @@ import "./categories.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 import { selectCategories } from "../../store/categories/categories.selector";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   getCategoriesAndDocuments,
   getUserDoc,
@@ -16,6 +16,7 @@ import { selectCheckedCategories } from "../../store/checked-categories/checked-
 import { setCheckedCategoriesMap } from "../../store/checked-categories/checked-categories.action";
 import { setBilling } from "../../store/billing/billing.action";
 import { selectBilling } from "../../store/billing/billing.selector";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,7 @@ const Categories = () => {
   const categories = useSelector(selectCategories);
   const checkedCategories = useSelector(selectCheckedCategories);
   const { choisedPackage } = userInfo;
-  console.log(billingInfo);
-
-  console.log(checkedCategories);
+  console.log(choisedPackage);
 
   useEffect(() => {
     const getCategories = async () => {
@@ -55,20 +54,22 @@ const Categories = () => {
     };
 
     getUserDocs();
-
-    // if (userInfo) {
-    //   dispatch(setBilling(checkedCategories, choisedPackage));
-    // }
   }, [currentUser, dispatch]);
 
   useEffect(() => {
-    dispatch(setBilling(checkedCategories, choisedPackage));
+    if (choisedPackage) {
+      console.log(1);
+      dispatch(setBilling(checkedCategories, choisedPackage));
+    }
   }, [checkedCategories, choisedPackage, dispatch]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await updateUserDoc(currentUser, { checkedCategories, checkout: billingInfo });
+      await updateUserDoc(currentUser, {
+        checkedCategories,
+        checkout: billingInfo,
+      });
       alert("Профиль обновлен!");
     } catch (error) {
       alert("Произошла ошибка при обновлении профиля!", error);
@@ -79,14 +80,20 @@ const Categories = () => {
   return (
     <div className="categories-container">
       <h2 className="title">Участие</h2>
-      <form className="form-categories" onSubmit={handleSubmit}>
-        {Object.keys(categories).map((title) => {
-          const category = categories[title];
-          return <Category key={title} category={category} title={title} />;
-        })}
-        <div className="total">Итого: {billingInfo ? billingInfo : 0}</div>
-        <Button type="submit">Сохранить</Button>
-      </form>
+      {choisedPackage ? (
+        <form className="form-categories" onSubmit={handleSubmit}>
+          {Object.keys(categories).map((title) => {
+            const category = categories[title];
+            return <Category key={title} category={category} title={title} />;
+          })}
+          <div className="total">Итого: {billingInfo ? billingInfo : 0}</div>
+          <Button type="submit">Сохранить</Button>
+        </form>
+      ) : (
+        <span>
+          <Link to={`/user`}>Выберите пакет</Link>
+        </span>
+      )}
     </div>
   );
 };

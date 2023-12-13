@@ -6,6 +6,7 @@ import { categoriesReducer } from "./categories/categories.reducer";
 import { checkedCategoriesReducer } from "./checked-categories/checked-categories.reducer";
 import { packagesReducer } from "./packages/packages.reducer";
 import { billingReducer } from "./billing/billing.reducer";
+import { choisedPackageReducer } from "./choised-package/choisedPackage.reducer";
 
 export const rootReducer = combineReducers({
     user: userReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
     categories: categoriesReducer,
     checkedCategories: checkedCategoriesReducer,
     packages: packagesReducer,
-    billingInfo: billingReducer
+    billingInfo: billingReducer,
+    choisedPackage: choisedPackageReducer
 })

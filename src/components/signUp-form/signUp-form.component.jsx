@@ -51,12 +51,11 @@ const SignUpForm = () => {
                 mentor: "не указан",
                 number: "не указан",
                 skill: "не выбран",
-                choisedPackage: "не выбран",
                 role: 'user',
                 nameCollective: 'не указан',
                 linkDisk: 'не указана',
                 uid: user.uid,
-                checkedCategories: []
+                checkedCategories: [],
             });
             setFormFields(defaultFormFields);
             // navigate("/user");
