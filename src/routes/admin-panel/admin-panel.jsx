@@ -1,7 +1,6 @@
-import { Children, useEffect, useState } from "react";
-import { deleteUserFromDatabaseAndAuth, getUserDoc, getUserDocs } from "../../utils/firebase/firebase.utils";
+import { useEffect } from "react";
+import { getUserDoc, getUserDocs } from "../../utils/firebase/firebase.utils";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { setUserInfo } from "../../store/userInfo/user-info.action";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +27,7 @@ const AdminPanel = () => {
     };
 
     getUserDocs();
-  }, [currentUser]);
+  }, [currentUser, dispatch]);
 
   useEffect(() => {
     const userDocs = async () => {
