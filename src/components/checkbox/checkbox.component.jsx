@@ -14,6 +14,7 @@ const Checkbox = ({ item, title }) => {
   };
 
   const filterChecked = checkedCategories.find(el => el.name === item.name)
+  
 
   return (
   
