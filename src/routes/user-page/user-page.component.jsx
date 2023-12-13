@@ -184,7 +184,7 @@ const UserPage = () => {
               name="choisedPackage"
               onChange={handleChange}
             >
-              <option defaultValue="выбрать"></option>
+              <option defaultValue="выбрать">{choisedPackage ? choisedPackage.title : "выбрать"}</option>
               {packagesMap.map((item) => {
                 return <option key={item.id}>{item.title}</option>
               })}

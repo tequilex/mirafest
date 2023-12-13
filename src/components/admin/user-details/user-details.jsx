@@ -80,7 +80,7 @@ const UserDetails = () => {
                 </li>
                 <li className="user-details-item">
                   <span className="item-name">Пакет:</span>
-                  <span className="item">{choisedPackage}</span>
+                  <span className="item">{choisedPackage.title}</span>
                 </li>
                 <li className="user-details-item">
                   <span className="item-name">Ссылка на музыку:</span>
