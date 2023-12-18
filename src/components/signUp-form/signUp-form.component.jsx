@@ -63,6 +63,10 @@ const SignUpForm = () => {
             if (error.code === "auth/email-already-in-use") {
                 alert("Пользователь с таким email уже зарегистрирован");
             }
+
+            if (error.code === "auth/weak-password") {
+                alert("Пароль должен состоять из 6 или более символов");
+            }
             console.log("user don't create", error);
         }
     };
@@ -130,6 +134,8 @@ const SignUpForm = () => {
                     name="confirmPassword"
                     value={confirmPassword}
                 />
+
+                <div className="inform">Пароль должен состоять из 6 или более символов</div>
 
                 <Button type="submit">Зарегистрироваться</Button>
                 <div className="goToReg">

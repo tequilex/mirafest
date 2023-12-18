@@ -13,6 +13,10 @@ $main-color: black;
   position: relative;
   margin: 20px 0;
 
+  &:nth-child(6) {
+    margin: 0px 0px;
+  }
+
   .form-input {
     background: none;
     background: rgba(59, 54, 54, 0.436);
@@ -52,3 +56,4 @@ $main-color: black;
     }
   }
 }
+
