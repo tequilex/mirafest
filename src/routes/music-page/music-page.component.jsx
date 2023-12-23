@@ -1,18 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/button/button.component";
 import FormInput from "../../components/form-input/form-input.component";
 
 import "./music-page.styles.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
-import { updateUserDoc } from "../../utils/firebase/firebase.utils";
+import { getUserDoc, updateUserDoc } from "../../utils/firebase/firebase.utils";
 import { selectCurrentUser } from "../../store/user/user.selector";
+import { setUserInfo } from "../../store/userInfo/user-info.action";
 
 const MusicPage = () => {
+  const dispatch = useDispatch();
   const userInfo = useSelector(selectUserInfo)
   const currentUser = useSelector(selectCurrentUser)
-
   const [link, setLink] = useState(userInfo.linkDisk)
+
+  useEffect(() => {
+    const getUserMusicLink = async () => {
+      const link = await getUserDoc(currentUser)
+      dispatch(setUserInfo(link));
+    }
+
+    getUserMusicLink()
+  }, [currentUser, dispatch])
+
+  useEffect(() => {
+    setLink(userInfo.linkDisk);
+  }, [userInfo]);
 
   const handleChange = (event) => {
     const {value} = event.target

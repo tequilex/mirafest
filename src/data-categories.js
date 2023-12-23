@@ -136,6 +136,18 @@ const DATA_CATEGORIES = [
         price: 1500,
       },
     ]
+  },
+  {
+    id: 6,
+    title: "Дополнительные услуги:",
+    items: [
+      {
+        id: 19,
+        name: 'Репетиция c оркестром',
+        isChecked: false,
+        price: 1000,
+      },
+    ]
   }
 ];
 
