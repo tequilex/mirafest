@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  addCollectionAndDocuments,
+  // addCollectionAndDocuments,
   getPackagesAndDocuments,
   getUserDoc,
   updateUserDoc,
@@ -16,7 +16,7 @@ import { Navigate } from "react-router-dom";
 import { setPackages } from "../../store/packages/packages.action";
 import { selectPackages } from "../../store/packages/packages.selector";
 // import DATA_CATEGORIES from "../../data-categories";
-// import DATA_PACKAGES from '../../data-packages'
+// import DATA_PACKAGES from "../../data-packages";
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -81,6 +81,7 @@ const UserPage = () => {
     nameCollective,
   } = formFields;
 
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
@@ -89,10 +90,10 @@ const UserPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await updateUserDoc(currentUser, {...formFields, choisedPackage: packagesMap.find((item) => item.title === choisedPackage) });
+      await updateUserDoc(currentUser, {...formFields, choisedPackage: packagesMap.find((item) => item.title === choisedPackage || item.title === choisedPackage.title)});
       alert("Профиль обновлен!");
     } catch (error) {
-      alert("Произошла ошибка при обновлении профиля!")
+      alert("Произошла ошибка при обновлении профиля!");
       console.log(error);
     }
   };
@@ -165,12 +166,16 @@ const UserPage = () => {
         <div className="selects">
           <div className="select-wrap">
             <span>Уровень мастерства</span>
-            <select className="select" name="skill" onChange={handleChange}>
-              <option defaultValue="выбрать">{skill}</option>
-              <option>дебют</option>
-              <option>начинающие</option>
-              <option>продолжающие</option>
-              <option>профессионалы</option>
+            <select
+              className="select"
+              name="skill"
+              value={skill}
+              onChange={handleChange}
+            >
+              <option value={"дебют"}>дебют</option>
+              <option value={"начинающие"}>начинающие</option>
+              <option value={"продолжающие"}>продолжающие</option>
+              <option value={"профессионалы"}>профессионалы</option>
             </select>
           </div>
 
@@ -180,10 +185,10 @@ const UserPage = () => {
               className="select"
               name="choisedPackage"
               onChange={handleChange}
+              value={choisedPackage.title}
             >
-              <option defaultValue="выбрать">{choisedPackage ? choisedPackage.title : "выбрать"}</option>
               {packagesMap.map((item) => {
-                return <option key={item.id}>{item.title}</option>
+                return <option key={item.id}>{item.title}</option>;
               })}
             </select>
           </div>

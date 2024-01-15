@@ -5,13 +5,13 @@ const DATA_CATEGORIES = [
     items: [
       {
         id: 1,
-        name: 'МК Ваагна Тадевосяна1',
+        name: 'МК Ваагна Тадевосяна Халиджи',
         isChecked: false,
         price: 2700,
       },
       {
         id: 2,
-        name: 'МК Ваагна Тадевосяна 2',
+        name: 'МК Ваагна Тадевосяна Тараб',
         isChecked: false,
         price: 2700,
       },

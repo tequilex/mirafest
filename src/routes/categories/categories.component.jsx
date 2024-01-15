@@ -40,8 +40,6 @@ const Categories = () => {
     getCategories();
   }, [dispatch]);
 
-  console.log(categories);
-
   useEffect(() => {
     const getUserDocs = async () => {
       if (!currentUser) return;
