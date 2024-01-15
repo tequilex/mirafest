@@ -81,6 +81,7 @@ const UserPage = () => {
     nameCollective,
   } = formFields;
 
+  console.log(choisedPackage);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -185,8 +186,9 @@ const UserPage = () => {
               className="select"
               name="choisedPackage"
               onChange={handleChange}
-              value={choisedPackage.title}
+              value={choisedPackage?.title }
             >
+              {!choisedPackage && <option>Не выбран пакет</option>}
               {packagesMap.map((item) => {
                 return <option key={item.id}>{item.title}</option>;
               })}
