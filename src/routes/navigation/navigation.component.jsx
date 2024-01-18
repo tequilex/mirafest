@@ -1,19 +1,28 @@
 import { Fragment } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import "./navigation.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../store/user/user.action";
 import { selectUserInfo } from "../../store/userInfo/user-info.selector";
 
+import { persistor } from '../../store/store';
+
 const Navigation = () => {
+    const navigate = useNavigate();
     const userInfo = useSelector(selectUserInfo);
     const { role } = userInfo;
 
     const dispatch = useDispatch();
     const signOutHandler = async () => {
         await signOutUser();
-        dispatch(setCurrentUser(null));
+        // dispatch(setCurrentUser(null));
+
+        await persistor.purge();
+
+        window.location.reload()
+
+        ;
     };
     return (
         <Fragment>
